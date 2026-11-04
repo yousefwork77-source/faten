@@ -257,6 +257,7 @@ stages.forEach((stage, i) => {
 });
 // لو اللاعب جاي من رابط استعادة كلمة السر، لازم نعرف قبل ما Supabase يمسح الـ hash.
 let recoveryMode = /type=recovery/.test(location.hash);
+let justConfirmed = /type=signup/.test(location.hash);
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GVvXRyVhLDUKYoc7sNg2aw_z41UKfvL";
 const db = window.supabase.createClient(
   "https://nwsvtrttlcrcepeohwfn.supabase.co",
