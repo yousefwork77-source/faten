@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#071b27" />
     <title>فَطِن</title>
-        <link rel="stylesheet" href="style.css?v=2" />
+        <link rel="stylesheet" href="style.css?v=3" />
     <script>
       try {
         var t = localStorage.getItem("faten-theme");
@@ -179,6 +179,7 @@
 
           <input
             id="passwordInput"
+                        dir="ltr"
             class="name-input"
             type="password"
             placeholder="كلمة المرور (٦ أحرف على الأقل)"
@@ -186,6 +187,9 @@
             minlength="6"
             required
           />
+                    <button id="showPassBtn" class="link-btn" type="button">
+            إظهار كلمة السر
+          </button>
                     <button id="forgotBtn" class="link-btn" type="button" hidden>
             نسيت كلمة السر؟
           </button>
@@ -257,6 +261,6 @@
     </div>
         <canvas id="confettiCanvas" aria-hidden="true"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0"></script>
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>

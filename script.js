@@ -292,6 +292,7 @@ function openNameModal() {
   $("nameInput").value = "";
   $("emailInput").value = "";
   $("passwordInput").value = "";
+  $("showPassBtn").hidden = forgot;
   updateAuthUI();
 }
 
@@ -1263,5 +1264,11 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     if (picked.length) removeTile(picked[picked.length - 1]);
   }
+});
+$("showPassBtn").addEventListener("click", () => {
+  const input = $("passwordInput");
+  const show = input.type === "password";
+  input.type = show ? "text" : "password";
+  $("showPassBtn").textContent = show ? "إخفاء كلمة السر" : "إظهار كلمة السر";
 });
 initializeApp();
