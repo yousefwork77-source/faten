@@ -507,9 +507,7 @@ p {
   }
 }
 @media (max-width: 360px) {
-  .questions-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+
   .section-note {
     display: none;
   }
@@ -1420,4 +1418,36 @@ html::-webkit-scrollbar {
 }
 html::-webkit-scrollbar-track {
   background: var(--panel);
+}
+/* ٣ أعمدة وصفين على الموبايل عشان الصفحة ما تطولش */
+@media (max-width: 600px) {
+  .questions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .question-card {
+    min-height: 0;
+    padding: 8px 7px;
+    border-radius: 12px;
+  }
+  .question-card .number {
+    min-width: 20px;
+    height: 20px;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .question-card .q-preview {
+    font-size: 10.5px;
+    line-height: 1.45;
+  }
+  .card-answer {
+    margin-top: 5px;
+    min-height: 16px;
+    font-size: 9px;
+    letter-spacing: 0.3px;
+  }
+  .card-answer.revealed {
+    font-size: 10px;
+  }
 }
