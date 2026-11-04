@@ -1133,7 +1133,8 @@ $("authForm").addEventListener("submit", async (event) => {
         email,
         password,
         options: {
-          data: { username }
+          data: { username },
+          emailRedirectTo: location.origin + location.pathname
         }
       });
 
