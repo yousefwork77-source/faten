@@ -1193,6 +1193,13 @@ $("finishBoardBtn").addEventListener("click", () => {
   openBoard();
 });
 $("replayBtn").addEventListener("click", replay);
+// لو التحميل اتأخر أكتر من ٨ ثواني، نخفي الشاشة ونفتح التسجيل.
+setTimeout(() => {
+  if ($("loader")) {
+    finishLoading();
+    if (!currentUser) openNameModal();
+  }
+}, 8000);
 
 // بنرسم اللعبة الأول، وبعدها بنكمّل مع آخر لاعب لو موجود، أو نطلب الاسم.
 
@@ -1201,30 +1208,44 @@ async function initializeApp() {
   syncThemeButton();
   updateAuthUI();
 
-  const { data, error } = await db.auth.getSession();
+  try {
+    const { data, error } = await db.auth.getSession();
 
-  if (error) {
-    console.error(error);
-    finishLoading();
-    openNameModal();
-    return;
-  }
+    if (error) {
+      console.error(error);
+      openNameModal();
+      return;
+    }
 
-  if (recoveryMode) {
-    authMode = "reset";
-    finishLoading();
-    openNameModal();
-    return;
-  }
+    if (recoveryMode) {
+      authMode = "reset";
+      openNameModal();
+      return;
+    }
 
-  if (data.session) {
-    await initializePlayer(data.session.user);
-  } else {
+    if (data.session) {
+      await initializePlayer(data.session.user);
+
+      if (justConfirmed) {
+        $("feedback").textContent = "✅ تم تأكيد حسابك! أهلًا بيك في فَطِن";
+        $("feedback").className = "feedback good";
+        history.replaceState(null, "", location.pathname);
+        justConfirmed = false;
+      }
+    } else {
+      prepareTiles();
+      renderAll();
+      openNameModal();
+    }
+  } catch (err) {
+    console.error(err);
     prepareTiles();
     renderAll();
     openNameModal();
+    $("nameError").textContent = "حصل خطأ في التحميل. سجّل دخول تاني.";
+  } finally {
+    finishLoading();
   }
-  finishLoading();
 }
 
 function finishLoading() {
