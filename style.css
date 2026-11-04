@@ -1,0 +1,1423 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "MochaYemen";
+  src: url("assets/font/RTL-MochaYemen-Regular.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --bg: #061721;
+  --panel: #0d2633;
+  --panel-2: #102f3c;
+  --panel-3: #163b48;
+  --jade: #16c7ad;
+  --jade-dark: #0a8e83;
+  --gold: #e8bd67;
+  --text: #f1f8f8;
+  --muted: #91aeb7;
+  --line: rgba(164, 216, 219, 0.13);
+  --good: #53e0a2;
+  --bad: #ff8a8a;
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(
+      ellipse at 8% 0%,
+      rgba(18, 153, 139, 0.16),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 100% 80%,
+      rgba(35, 105, 127, 0.16),
+      transparent 35%
+    ),
+    var(--bg);
+  font-family: "Cairo", Tahoma, Arial, sans-serif;
+}
+button {
+  font: inherit;
+}
+button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+.app-shell {
+  width: min(100% - 28px, 980px);
+  margin: 0 auto;
+  padding: 22px 0 28px;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 17px;
+  color: #06252a;
+  font-size: 28px;
+  font-weight: 900;
+  background: linear-gradient(145deg, #55e2c9, #0e9b91);
+  box-shadow: 0 8px 28px rgba(22, 199, 173, 0.2);
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+.brand h1 {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+.brand p {
+  color: var(--muted);
+  font-size: 12px;
+
+}
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+.progress-panel,
+.play-panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    145deg,
+    rgba(16, 47, 60, 0.96),
+    rgba(8, 31, 42, 0.96)
+  );
+  border-radius: var(--radius);
+}
+.progress-panel {
+  padding: 17px 20px;
+  margin-bottom: 22px;
+}
+.progress-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #d8e9e9;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 11px;
+}
+#progressLabel {
+  color: var(--muted);
+  font-weight: 600;
+}
+.progress-track {
+  height: 8px;
+  background: #071a23;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--jade-dark), var(--jade), #9bf3d9);
+  transition: width 0.35s ease;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+}
+.section-heading h2 {
+  font-size: 16px;
+  font-weight: 800;
+}
+.heading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 14px rgba(232, 189, 103, 0.45);
+}
+.section-note {
+  color: var(--muted);
+  font-size: 11px;
+  margin-right: auto;
+}
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.question-card {
+  position: relative;
+  min-height: 91px;
+  padding: 12px;
+  text-align: right;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(13, 38, 51, 0.9);
+  color: var(--text);
+  transition:
+    transform 0.18s,
+    border-color 0.18s,
+    background 0.18s;
+}
+.question-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(22, 199, 173, 0.55);
+}
+.question-card.active {
+  border-color: var(--jade);
+  background: linear-gradient(
+    140deg,
+    rgba(17, 105, 99, 0.62),
+    rgba(13, 38, 51, 0.96)
+  );
+  box-shadow: inset 0 0 0 1px rgba(22, 199, 173, 0.15);
+}
+.question-card.solved {
+  border-color: rgba(83, 224, 162, 0.36);
+  background: rgba(18, 69, 63, 0.6);
+}
+.question-card .number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 5px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+.question-card .q-preview {
+  display: block;
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+.question-card .status {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  color: var(--good);
+  font-size: 14px;
+}
+.play-panel {
+  padding: clamp(16px, 3vw, 25px);
+}
+.active-question {
+  text-align: center;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow {
+  display: block;
+  color: var(--jade);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.active-question h2 {
+  font-size: clamp(18px, 3vw, 25px);
+  line-height: 1.6;
+  font-weight: 800;
+}
+.question-counter {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.answer-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  min-height: 49px;
+  margin: 19px 0 21px;
+}
+.answer-slot {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  min-height: 44px;
+  padding: 0 7px;
+  border: 1px dashed rgba(145, 174, 183, 0.43);
+  border-radius: 11px;
+  background: rgba(3, 19, 27, 0.55);
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 800;
+}
+.answer-slot.filled {
+  border-style: solid;
+  border-color: rgba(22, 199, 173, 0.65);
+  background: rgba(22, 199, 173, 0.12);
+}
+.tiles-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.tiles-heading small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+}
+.letter-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  min-height: 54px;
+}
+.letter-tile {
+  min-width: 48px;
+  height: 49px;
+  padding: 0 12px;
+  border: 1px solid rgba(22, 199, 173, 0.28);
+  border-radius: 13px;
+  background: linear-gradient(145deg, #174351, #102d3a);
+  color: #f2ffff;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #071d27;
+  transition:
+    transform 0.12s,
+    opacity 0.15s,
+    border-color 0.15s;
+}
+.letter-tile:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--jade);
+}
+.letter-tile:disabled {
+  opacity: 0.23;
+  cursor: default;
+  box-shadow: none;
+}
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 21px;
+  flex-wrap: wrap;
+}
+.secondary-btn,
+.primary-btn {
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.secondary-btn {
+  color: #c3d8db;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+}
+.secondary-btn:hover {
+  border-color: rgba(145, 174, 183, 0.5);
+}
+.feedback {
+  margin-right: auto;
+  font-size: 12px;
+  font-weight: 800;
+}
+.feedback.good {
+  color: var(--good);
+}
+.feedback.bad {
+  color: var(--bad);
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  color: #7f9da7;
+  font-size: 11px;
+  padding: 20px 0 0;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(2, 12, 18, 0.78);
+  backdrop-filter: blur(8px);
+}
+.modal.hidden {
+  display: none;
+}
+.modal-card {
+  width: min(100%, 390px);
+  padding: 32px 24px;
+  border: 1px solid rgba(22, 199, 173, 0.3);
+  border-radius: 26px;
+  background: linear-gradient(145deg, #123b47, #0a222e);
+  text-align: center;
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.4);
+  animation: pop-in 0.35s ease both;
+}
+.modal-symbol {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 16px;
+  border-radius: 21px;
+  color: #07312e;
+  font-size: 32px;
+  background: linear-gradient(145deg, #ffe4a2, #dca84b);
+}
+.modal-card h2 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+.modal-card > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+.primary-btn {
+  border: 0;
+  color: #052b2a;
+  background: linear-gradient(110deg, #69ecd1, #13b69f);
+  padding: 12px 22px;
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes celebrate {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(83, 224, 162, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(83, 224, 162, 0.3);
+  }
+}
+.question-card.just-solved {
+  animation: celebrate 0.65s ease;
+}
+@media (max-width: 600px) {
+  .app-shell {
+    width: min(100% - 20px, 520px);
+    padding-top: 14px;
+  }
+  .topbar {
+    margin-bottom: 16px;
+  }
+  .brand-mark {
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+  }
+  .progress-panel {
+    padding: 14px;
+    margin-bottom: 18px;
+  }
+  .questions-grid {
+    gap: 7px;
+    margin-bottom: 17px;
+  }
+  .question-card {
+    min-height: 91px;
+    padding: 9px;
+    border-radius: 13px;
+  }
+  .question-card .q-preview {
+    font-size: 11px;
+  }
+  .question-card .number {
+    min-width: 22px;
+    height: 22px;
+    margin-bottom: 5px;
+  }
+  .question-card .status {
+    top: 8px;
+    left: 8px;
+  }
+  .play-panel {
+    border-radius: 19px;
+  }
+  .answer-slot {
+    min-width: 34px;
+    min-height: 40px;
+    font-size: 15px;
+    padding: 0 5px;
+  }
+  .letter-tile {
+    min-width: 43px;
+    height: 45px;
+    padding: 0 9px;
+    font-size: 16px;
+  }
+  .action-row {
+    gap: 7px;
+  }
+  .secondary-btn {
+    padding: 8px 10px;
+  }
+}
+@media (max-width: 360px) {
+  .questions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .section-note {
+    display: none;
+  }
+}
+
+/* تنسيق الإجابة اللي بتظهر تحت كل سؤال والنقط قبل الحل. */
+.card-answer {
+  min-height: 22px;
+  margin-top: 8px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+.card-answer.revealed {
+  color: var(--good);
+  letter-spacing: 0;
+  font-size: 13px;
+}
+.selection-hint {
+  align-self: center;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+.questions-grid .question-card {
+  cursor: default;
+}
+.question-card .q-preview {
+  padding-inline-end: 1px;
+}
+@media (max-width: 600px) {
+  .card-answer {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .card-answer.revealed {
+    font-size: 11px;
+  }
+}
+
+/* خانة الإجابة بقت زرار عشان اللاعب يقدر يدوس عليها ويرجّع المقطع. */
+button.answer-slot {
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.12s,
+    border-color 0.15s,
+    background 0.15s;
+}
+button.answer-slot:hover {
+  transform: translateY(-2px);
+  border-color: var(--bad);
+  background: rgba(255, 138, 138, 0.1);
+}
+
+/* اسم اللاعب وأزرار الشريط العلوي. */
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.player-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+}
+.player-name:empty {
+  display: none;
+}
+
+/* حقل الاسم. */
+.name-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(22, 199, 173, 0.4);
+  border-radius: 13px;
+  background: rgba(3, 19, 27, 0.6);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.name-input:focus {
+  outline: 2px solid var(--jade);
+  outline-offset: 2px;
+}
+.name-error {
+  min-height: 22px;
+  margin-bottom: 8px;
+  color: var(--bad);
+  font-size: 12px;
+  font-weight: 700;
+}
+.name-error.success {
+  color: var(--good);
+}
+/* أزرار داخل النوافذ. */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-actions button {
+  width: 100%;
+  padding: 12px 18px;
+}
+
+/* اللوحة الشرفية. */
+.board-card {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.board-card .board-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-inline-end: 4px;
+}
+.board-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  text-align: right;
+}
+.board-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+}
+.board-row.me {
+  border-color: var(--gold);
+  background: rgba(232, 189, 103, 0.1);
+}
+.board-row .rank {
+  min-width: 30px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 900;
+}
+.board-row .board-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 800;
+}
+.board-row .board-score {
+  color: var(--good);
+  font-size: 12px;
+  font-weight: 800;
+}
+.board-gap,
+.board-empty {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* إحصائيات الشاشة الختامية. */
+.finish-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.finish-stats div {
+  display: grid;
+  gap: 3px;
+  padding: 12px 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.finish-stats strong {
+  color: var(--gold);
+  font-size: 17px;
+  font-weight: 900;
+}
+.finish-stats span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* حقول تسجيل الحساب */
+#authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#authForm .name-input {
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+#authForm .primary-btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+#authSwitchBtn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 14px;
+}
+
+#authForm button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+#nameInput[hidden] {
+  display: none;
+}
+
+.logo-symbol {
+  width: 60px;
+  height: 60px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.logo-symbol img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+.faten-logo { 
+
+  font-family: "MochaYemen",Arial, Helvetica, sans-serif;
+font-size: clamp(30px, 5vw, 60px);
+  font-weight: 300;
+  box-shadow: #071d27;
+  direction: rtl;
+}
+/* اهتزاز خانات الإجابة لما اللاعب يغلط. */
+.answer-slots.shake {
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .answer-slots.shake {
+    animation: none;
+  }
+}
+/* وضع التلميح: البطاقات غير المحلولة بتنوّر ويقدر اللاعب يدوس عليها. */
+.questions-grid .question-card.hintable {
+  cursor: pointer;
+  border-color: var(--gold);
+  animation: hint-pulse 1.2s ease-in-out infinite;
+}
+@keyframes hint-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(232, 189, 103, 0);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(232, 189, 103, 0.35);
+  }
+}
+.secondary-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* الصف العلوي: زر افحص يمين، خانات الإجابة في النص، المصباح شمال. */
+.play-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 21px;
+}
+.play-top .answer-slots { flex: 1; min-width: 0; margin: 0; }
+
+/* زر افحص. */
+.check-btn {
+  flex-shrink: 0;
+  min-width: 76px;
+  height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #69ecd1, #13b69f);
+  color: #052b2a;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0a8e83;
+  transition: transform .12s, box-shadow .12s, opacity .15s;
+}
+.check-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.check-btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 #0a8e83; }
+.check-btn:disabled { opacity: .35; cursor: default; box-shadow: none; }
+
+/* زر المصباح (التلميح) وعدّاد التلميحات في ركنه. */
+.hint-btn {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(232, 189, 103, .55);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1d3d46, #102d3a);
+  color: var(--gold);
+  cursor: pointer;
+  box-shadow: 0 4px 0 #071d27;
+  transition: transform .12s, background .15s, box-shadow .15s;
+}
+.hint-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--gold); }
+.hint-btn.active {
+  background: linear-gradient(145deg, #ffe4a2, #dca84b);
+  color: #4a3200;
+  box-shadow: 0 0 18px rgba(232, 189, 103, .45);
+}
+.hint-btn.empty { color: var(--muted); border-color: var(--line); }
+.hint-btn:disabled { opacity: .5; cursor: default; box-shadow: none; }
+
+.hint-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border: 2px solid var(--panel);
+  border-radius: 99px;
+  background: var(--jade);
+  color: #052b2a;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+}
+.hint-btn.empty .hint-count { background: #5b7882; color: #d8e9e9; }
+
+/* الصف السفلي بقى فيه رسالة التنبيه بس، فبنوسّطها. */
+.action-row { justify-content: center; min-height: 20px; }
+.action-row .feedback { margin: 0; text-align: center; }
+
+@media (max-width: 600px) {
+  .play-top { gap: 7px; }
+  .check-btn { min-width: 62px; height: 44px; padding: 0 12px; font-size: 14px; }
+  .hint-btn { width: 46px; height: 46px; }
+}
+/* زر نسيت كلمة السر */
+.link-btn {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}
+.link-btn[hidden] {
+  display: none;
+}
+/* ===== الوضع الفاتح (ألوان دافية مريحة للعين) ===== */
+:root[data-theme="light"] {
+  --bg: #e9e4d8;
+  --panel: #f3efe4;
+  --panel-2: #ece7da;
+  --panel-3: #e2dccd;
+  --jade: #2f9c8a;
+  --jade-dark: #237c6e;
+  --gold: #96691a;
+  --text: #2d3b3f;
+  --muted: #6b7a7c;
+  --line: rgba(45, 59, 63, 0.14);
+  --good: #3b8a62;
+  --bad: #c25a55;
+  color-scheme: light;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(47, 156, 138, 0.09), transparent 38%),
+    radial-gradient(ellipse at 100% 80%, rgba(150, 105, 26, 0.07), transparent 38%),
+    var(--bg);
+}
+
+:root[data-theme="light"] .progress-panel,
+:root[data-theme="light"] .play-panel {
+  background: linear-gradient(145deg, #f3efe4, #ebe6d9);
+  box-shadow: 0 4px 18px rgba(60, 50, 30, 0.06);
+}
+
+:root[data-theme="light"] .progress-copy {
+  color: var(--text);
+}
+
+:root[data-theme="light"] .progress-track {
+  background: #d8d2c2;
+}
+
+:root[data-theme="light"] .question-card {
+  background: #f6f2e8;
+}
+
+:root[data-theme="light"] .question-card.solved {
+  background: #dfeadf;
+  border-color: rgba(59, 138, 98, 0.4);
+}
+
+:root[data-theme="light"] .question-card .number {
+  background: rgba(45, 59, 63, 0.07);
+}
+
+:root[data-theme="light"] .answer-slot {
+  background: #ece7da;
+  border-color: rgba(45, 59, 63, 0.3);
+}
+
+:root[data-theme="light"] .answer-slot.filled {
+  background: rgba(47, 156, 138, 0.14);
+  border-color: rgba(47, 156, 138, 0.65);
+}
+
+:root[data-theme="light"] .letter-tile {
+  background: linear-gradient(145deg, #f6f2e8, #e6e0d1);
+  color: var(--text);
+  border-color: rgba(47, 156, 138, 0.35);
+  box-shadow: 0 4px 0 #c9c2b0;
+}
+
+:root[data-theme="light"] .hint-btn {
+  background: linear-gradient(145deg, #f6f2e8, #e6e0d1);
+  box-shadow: 0 4px 0 #c9c2b0;
+}
+
+:root[data-theme="light"] .hint-btn.active {
+  background: linear-gradient(145deg, #f0d596, #d4a652);
+  color: #4a3200;
+}
+
+:root[data-theme="light"] .hint-count {
+  border-color: #f3efe4;
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .check-btn,
+:root[data-theme="light"] .primary-btn {
+  background: linear-gradient(110deg, #5dbfa9, #2f9c8a);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .check-btn {
+  box-shadow: 0 4px 0 #237c6e;
+}
+
+:root[data-theme="light"] .secondary-btn {
+  color: var(--text);
+  background: rgba(45, 59, 63, 0.05);
+}
+
+:root[data-theme="light"] .modal {
+  background: rgba(45, 40, 28, 0.55);
+}
+
+:root[data-theme="light"] .modal-card {
+  background: linear-gradient(145deg, #f3efe4, #e8e3d5);
+  border-color: rgba(47, 156, 138, 0.3);
+  box-shadow: 0 25px 80px rgba(45, 40, 28, 0.28);
+}
+
+:root[data-theme="light"] .modal-symbol {
+  color: #ffffff;
+  background: linear-gradient(145deg, #d9b25f, #b8862e);
+}
+
+:root[data-theme="light"] .name-input {
+  background: #ece7da;
+  border-color: rgba(47, 156, 138, 0.45);
+}
+
+:root[data-theme="light"] .board-row,
+:root[data-theme="light"] .finish-stats div {
+  background: rgba(45, 59, 63, 0.045);
+}
+
+:root[data-theme="light"] .hint-btn.empty .hint-count {
+  background: #9aa8a8;
+  color: #ffffff;
+}
+/* منع تمدد الصفحة على الموبايل */
+html,
+body {
+  overflow-x: hidden;
+}
+
+.topbar {
+  min-width: 0;
+}
+.brand {
+  min-width: 0;
+}
+.top-actions {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .faten-logo {
+    font-size: 30px;
+  }
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+  .player-name {
+    max-width: 80px;
+    padding: 6px 9px;
+  }
+  .top-actions {
+    gap: 6px;
+  }
+}
+/* ===== ثيم الغروب 🌅 ===== */
+:root[data-theme="sunset"] {
+  --bg: #1c1526;
+  --panel: #2a2037;
+  --panel-2: #322842;
+  --panel-3: #3c3050;
+  --jade: #ee7d77;
+  --jade-dark: #c9605c;
+  --gold: #f0c27b;
+  --text: #f6ece8;
+  --muted: #b3a2b8;
+  --line: rgba(240, 200, 190, 0.14);
+  --good: #8fd9a8;
+  --bad: #ff9a9a;
+  color-scheme: dark;
+}
+
+:root[data-theme="sunset"] body {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(238, 125, 119, 0.14), transparent 38%),
+    radial-gradient(ellipse at 100% 80%, rgba(240, 194, 123, 0.09), transparent 38%),
+    var(--bg);
+}
+
+:root[data-theme="sunset"] .progress-panel,
+:root[data-theme="sunset"] .play-panel {
+  background: linear-gradient(145deg, #2f2540, #231a30);
+}
+
+:root[data-theme="sunset"] .progress-track {
+  background: #171021;
+}
+
+:root[data-theme="sunset"] .progress-bar {
+  background: linear-gradient(90deg, #c9605c, #ee7d77, #f0c27b);
+}
+
+:root[data-theme="sunset"] .question-card {
+  background: rgba(42, 32, 55, 0.92);
+}
+
+:root[data-theme="sunset"] .question-card.solved {
+  background: rgba(70, 52, 72, 0.7);
+  border-color: rgba(143, 217, 168, 0.4);
+}
+
+:root[data-theme="sunset"] .answer-slot {
+  background: rgba(20, 13, 30, 0.55);
+}
+
+:root[data-theme="sunset"] .answer-slot.filled {
+  background: rgba(238, 125, 119, 0.14);
+  border-color: rgba(238, 125, 119, 0.7);
+}
+
+:root[data-theme="sunset"] .letter-tile {
+  background: linear-gradient(145deg, #3d3050, #2d2240);
+  border-color: rgba(238, 125, 119, 0.3);
+  box-shadow: 0 4px 0 #170f21;
+}
+
+:root[data-theme="sunset"] .letter-tile:hover:not(:disabled) {
+  border-color: var(--jade);
+}
+
+:root[data-theme="sunset"] .hint-btn {
+  background: linear-gradient(145deg, #3d3050, #2d2240);
+  box-shadow: 0 4px 0 #170f21;
+}
+
+:root[data-theme="sunset"] .check-btn,
+:root[data-theme="sunset"] .primary-btn {
+  background: linear-gradient(110deg, #f59a8f, #e0645f);
+  color: #2b1020;
+}
+
+:root[data-theme="sunset"] .check-btn {
+  box-shadow: 0 4px 0 #a84844;
+}
+
+:root[data-theme="sunset"] .hint-count {
+  color: #2b1020;
+}
+
+:root[data-theme="sunset"] .modal-card {
+  background: linear-gradient(145deg, #3a2c4b, #231a30);
+  border-color: rgba(238, 125, 119, 0.3);
+}
+
+:root[data-theme="sunset"] .modal-symbol {
+  color: #2b1020;
+}
+
+:root[data-theme="sunset"] .name-input {
+  background: rgba(20, 13, 30, 0.6);
+  border-color: rgba(238, 125, 119, 0.45);
+}
+
+/* ===== ثيم الغابة 🌲 ===== */
+:root[data-theme="forest"] {
+  --bg: #121c16;
+  --panel: #1b2a21;
+  --panel-2: #213328;
+  --panel-3: #293d31;
+  --jade: #7fc47f;
+  --jade-dark: #5a9c5e;
+  --gold: #e0a84f;
+  --text: #eef3e8;
+  --muted: #9bb09f;
+  --line: rgba(190, 225, 190, 0.13);
+  --good: #a5e08a;
+  --bad: #f09a86;
+  color-scheme: dark;
+}
+
+:root[data-theme="forest"] body {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(127, 196, 127, 0.12), transparent 38%),
+    radial-gradient(ellipse at 100% 80%, rgba(224, 168, 79, 0.07), transparent 38%),
+    var(--bg);
+}
+
+:root[data-theme="forest"] .progress-panel,
+:root[data-theme="forest"] .play-panel {
+  background: linear-gradient(145deg, #223429, #18261d);
+}
+
+:root[data-theme="forest"] .progress-track {
+  background: #0e1611;
+}
+
+:root[data-theme="forest"] .progress-bar {
+  background: linear-gradient(90deg, #5a9c5e, #7fc47f, #c3e8a0);
+}
+
+:root[data-theme="forest"] .question-card {
+  background: rgba(27, 42, 33, 0.92);
+}
+
+:root[data-theme="forest"] .question-card.solved {
+  background: rgba(48, 78, 52, 0.6);
+  border-color: rgba(165, 224, 138, 0.4);
+}
+
+:root[data-theme="forest"] .answer-slot {
+  background: rgba(10, 18, 13, 0.55);
+}
+
+:root[data-theme="forest"] .answer-slot.filled {
+  background: rgba(127, 196, 127, 0.14);
+  border-color: rgba(127, 196, 127, 0.65);
+}
+
+:root[data-theme="forest"] .letter-tile {
+  background: linear-gradient(145deg, #2b4234, #1f3328);
+  border-color: rgba(127, 196, 127, 0.3);
+  box-shadow: 0 4px 0 #0c140f;
+}
+
+:root[data-theme="forest"] .hint-btn {
+  background: linear-gradient(145deg, #2b4234, #1f3328);
+  box-shadow: 0 4px 0 #0c140f;
+}
+
+:root[data-theme="forest"] .check-btn,
+:root[data-theme="forest"] .primary-btn {
+  background: linear-gradient(110deg, #9ad88f, #5fa862);
+  color: #0f2113;
+}
+
+:root[data-theme="forest"] .check-btn {
+  box-shadow: 0 4px 0 #437a47;
+}
+
+:root[data-theme="forest"] .hint-count {
+  color: #0f2113;
+}
+
+:root[data-theme="forest"] .modal-card {
+  background: linear-gradient(145deg, #264034, #17251c);
+  border-color: rgba(127, 196, 127, 0.3);
+}
+
+:root[data-theme="forest"] .modal-symbol {
+  color: #3a2800;
+}
+
+:root[data-theme="forest"] .name-input {
+  background: rgba(10, 18, 13, 0.6);
+  border-color: rgba(127, 196, 127, 0.45);
+}
+/* مصباح التلميح في ثيم الغروب والغابة */
+:root[data-theme="sunset"] .hint-btn,
+:root[data-theme="forest"] .hint-btn {
+  border-color: rgba(240, 194, 123, 0.4);
+}
+
+:root[data-theme="sunset"] .hint-btn.active {
+  background: linear-gradient(145deg, #f0c27b, #d9975a);
+  color: #3a1f10;
+  box-shadow: 0 0 14px rgba(240, 194, 123, 0.3);
+}
+
+:root[data-theme="forest"] .hint-btn.active {
+  background: linear-gradient(145deg, #e8c277, #c99443);
+  color: #3a2800;
+  box-shadow: 0 0 14px rgba(224, 168, 79, 0.3);
+}
+/* ===== الكونفيتي والاحتفال ===== */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* وهج أقوى على البطاقة لما تتحل */
+@keyframes solved-pop {
+  0%   { transform: scale(1); box-shadow: 0 0 0 rgba(83, 224, 162, 0); }
+  35%  { transform: scale(1.04); box-shadow: 0 0 28px rgba(83, 224, 162, 0.55); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(83, 224, 162, 0); }
+}
+.question-card.just-solved {
+  animation: solved-pop 0.7s ease;
+}
+
+/* إخفاء اللعبة لحد ما التقدم يتحمّل */
+.app-shell.loading .progress-panel,
+.app-shell.loading .questions-section,
+.app-shell.loading .play-panel {
+  opacity: 0;
+  pointer-events: none;
+}
+.app-shell .progress-panel,
+.app-shell .questions-section,
+.app-shell .play-panel {
+  transition: opacity 0.25s ease;
+}
+/* ===== شاشة التحميل ===== */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(22, 199, 173, 0.16), transparent 38%),
+    radial-gradient(ellipse at 100% 80%, rgba(232, 189, 103, 0.08), transparent 38%),
+    var(--bg);
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.loader.done {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader-logo {
+  font-family: "MochaYemen", "Cairo", Arial, sans-serif;
+  font-size: clamp(54px, 14vw, 84px);
+  color: var(--text);
+  direction: rtl;
+  animation: loader-float 2s ease-in-out infinite;
+}
+.loader-dots {
+  display: flex;
+  gap: 9px;
+}
+.loader-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--jade);
+  animation: loader-pulse 1.2s ease-in-out infinite;
+}
+.loader-dots span:nth-child(2) {
+  background: var(--gold);
+  animation-delay: 0.18s;
+}
+.loader-dots span:nth-child(3) {
+  animation-delay: 0.36s;
+}
+.loader-text {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+@keyframes loader-pulse {
+  0%, 80%, 100% { transform: scale(0.55); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+@keyframes loader-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+/* تمييز صف اللاعب الحالي في اللوحة */
+:root[data-theme="light"] .board-row.me {
+  background: rgba(150, 105, 26, 0.14);
+  border-color: var(--gold);
+}
+/* اللاعب اللي خلّص كل المراحل */
+.board-row.finished .board-score {
+  color: var(--gold);
+}
+.board-gap {
+  line-height: 1;
+  padding: 0;
+  letter-spacing: 4px;
+}
+/* ===== شريط التمرير ===== */
+/* بيشتغل في كروم وإيدج وسفاري. الألوان من متغيرات الثيم فبتتغير معاه. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--jade-dark) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--jade-dark);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--jade);
+  background-clip: padding-box;
+}
+
+/* شريط الصفحة الرئيسي أعرض شوية وله خلفية خفيفة */
+html::-webkit-scrollbar {
+  width: 12px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--panel);
+}
