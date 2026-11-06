@@ -28,7 +28,7 @@
 }
 body {
   margin: 0;
-  min-height: 100vh;
+
   color: var(--text);
   background:
     radial-gradient(
@@ -1672,4 +1672,32 @@ body {
 .letter-tiles[hidden],
 .hint-btn[hidden] {
   display: none;
+}
+/* منع السكرول نهائيًا: الصفحة بحجم المساحة المرئية بالظبط في أي متصفح */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+body {
+  min-height: 0;
+}
+.app-shell {
+  height: 100vh;   /* للمتصفحات القديمة */
+  height: 100dvh;  /* المساحة المرئية الفعلية */
+}
+
+/* لو الكيبورد فتح على شاشة صغيرة، نافذة التسجيل تتسكرول جواها */
+.modal-card:not(.board-card) {
+  max-height: 92dvh;
+  overflow-y: auto;
+}
+/* البطاقات ليها ارتفاع أقصى ثابت (على قد شكل Brave). تصغر لو الشاشة قصيرة، ومش بتكبر أكتر من كده */
+.questions-section {
+  flex: 0 1 320px;
+  min-height: 0;
+}
+.app-shell {
+  justify-content: space-between;
 }
