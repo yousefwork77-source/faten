@@ -1451,3 +1451,225 @@ html::-webkit-scrollbar-track {
     font-size: 10px;
   }
 }
+/* منع تحديد النص أثناء اللعب */
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* لازم نسمح بالتحديد في حقول الكتابة */
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+.check-btn[hidden] {
+  display: none;
+}
+/* ===== تخطيط بدون سكرول + شارة المرحلة ===== */
+html,
+body {
+  height: 100%;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 0;
+  padding: 12px 0 14px;
+  overflow: visible;
+}
+
+.topbar {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.stage-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  margin-inline-start: 24px;
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--panel);
+  direction: rtl;
+  white-space: nowrap;
+}
+.stage-badge b {
+  color: var(--gold);
+  font-size: 17px;
+  font-weight: 900;
+}
+.stage-badge i {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 12px;
+}
+.stage-badge span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.brand {
+  gap: 4px;
+}
+
+/* شريط التقدم: خط رفيع من غير إطار */
+.progress-panel {
+  flex-shrink: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.progress-track {
+  height: 6px;
+}
+
+/* البطاقات بتاخد المساحة الفاضلة */
+.questions-section {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.questions-grid {
+  flex: 1;
+  min-height: 0;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  margin-bottom: 10px;
+}
+.question-card {
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  padding-bottom: 12px;
+}
+.question-card .q-preview {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+}
+.question-card .card-answer {
+  flex-shrink: 0;
+  margin-top: 0;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+}
+.question-card .q-preview {
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.question-card .status {
+  top: 6px;
+  left: 7px;
+}
+
+.play-panel {
+  flex-shrink: 0;
+  padding: 12px;
+}
+.play-top {
+  margin-bottom: 12px;
+}
+.action-row {
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+@media (max-width: 600px) {
+  .question-card .q-preview {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .card-answer {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .player-name {
+    display: none;
+  }
+}
+
+/* شاشات قصيرة: نصغّر البلاطات شوية */
+@media (max-height: 700px) {
+  .letter-tile {
+    min-width: 40px;
+    height: 40px;
+    font-size: 15px;
+    padding: 0 8px;
+  }
+  .letter-tiles {
+    gap: 6px;
+  }
+}
+.card-answer {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  overflow: hidden;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.card-answer.revealed {
+  font-size: 15px;
+  white-space: normal;
+}
+/* لوحة اللعب بارتفاع ثابت مهما قلّت البلاطات */
+.play-panel {
+  height: 340px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.play-top {
+  flex-shrink: 0;
+}
+.letter-tiles {
+  flex: 1;
+  min-height: 0;
+  align-content: flex-start;
+  overflow: visible;
+}
+.action-row {
+  flex-shrink: 0;
+}
+
+@media (max-height: 700px) {
+  .play-panel {
+    height: 250px;
+  }
+}
+/* بلاطة محلولة: بتختفي وتسيب مكانها فاضي */
+.letter-tile.gone {
+  visibility: hidden;
+  pointer-events: none;
+}
+.topbar {
+  overflow: visible;
+  padding-top: 6px;
+}
+.brand h1,
+.faten-logo {
+  overflow: visible;
+  line-height: 1.5;
+  padding: 4px 6px;
+  display: inline-block;
+}
+.question-card .q-preview {
+  overflow: hidden;
+}
+
+.letter-tiles[hidden],
+.hint-btn[hidden] {
+  display: none;
+}

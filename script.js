@@ -10,7 +10,7 @@ const stages = [
   [
     { q: "فاتح القسطنطينية", a: "محمد الفاتح" },
     { q: "عاصمة اليابان", a: "طوكيو" },
-    { q: "وحدة قياس شدة التيار", a: "الأمبير" },
+    { q: "وحدة قياس شدة التيار", a: "أمبير" },
     { q: "شاعر النيل", a: "حافظ إبراهيم" },
     { q: "الاسم الأول لشكسبير", a: "وليام" },
     { q: "أول منتخب فاز بكأس العالم لكرة القدم", a: "الأوروغواي" }
@@ -33,10 +33,10 @@ const stages = [
   ],
   [
     { q: "صاحب كتاب الشفاء", a: "ابن سينا" },
-    { q: "الاسم الأول لفان جوخ", a: "فنسنت" },
+    { q: "الاسم الأول لفان غوخ", a: "فنسنت" },
     { q: "المنتخب الفائز بمونديال 2006", a: "إيطاليا" },
-    { q: "المعدن السائل", a: "الزئبق" },
-    { q: "حيوان ينام وإحدى عينيه مفتوحة", a: "الدلفين" },
+    { q: "المعدن السائل", a: "زئبق" },
+    { q: "حيوان ينام وإحدى عينيه مفتوحة", a: "دلفين" },
     { q: "النبي الذي لُقّب بأنه أول من خط بالقلم", a: "إدريس" }
   ],
   [
@@ -72,11 +72,11 @@ const stages = [
     { q: "العالم صاحب مبدأ عدم اليقين", a: "هايزنبرغ" }
   ],
   [
-    { q: "النبي الذي سماه الله تعالى بنفسه", a: "يحيى" },
+    { q: "السورة التي لم تبدأ بالبسملة", a: "التوبة" },
     { q: "الصحابي الملقب بذي النورين", a: "عثمان" },
     { q: "صاحب كتاب المقدمة", a: "ابن خلدون" },
     { q: "الدولة التي تمتلك أطول خط ساحلي في العالم", a: "كندا" },
-    { q: "ناتج خلط النحاس مع القصدير", a: "البرونز" },
+    { q: "ناتج خلط النحاس مع القصدير", a: "برونز" },
     { q: "صاحب كتاب تاريخ الرسل والملوك", a: "الطبري" }
   ],
   [
@@ -122,10 +122,10 @@ const stages = [
   [
     { q: "صوت الضفدع", a: "نقيق" },
     { q: "المعاهدة التي أنهت الحرب العالمية الأولى مع ألمانيا", a: "فرساي" },
-    { q: "الجهاز الذي يستخدم الموجات للكشف عن الأجسام", a: "الرادار" },
+    { q: "الجهاز الذي يستخدم الموجات للكشف عن الأجسام", a: "رادار" },
     { q: "النادي الفائز بأول نسخة من دوري أبطال أوروبا بمسماه الحديث", a: "مارسيليا" },
     { q: "ضد كلمة مستعص", a: "متيسر" },
-    { q: "أخف عنصر في الجدول الدوري", a: "الهيدروجين" }
+    { q: "أخف عنصر في الجدول الدوري", a: "هيدروجين" }
   ],
   [
     { q: "الدولة التي نظمت أول أولمبياد حديث", a: "اليونان" },
@@ -133,13 +133,13 @@ const stages = [
     { q: "عاصمة أستراليا", a: "كانبرا" },
     { q: "العضو المسؤول عن ضخ الدم", a: "القلب" },
     { q: "مرادف كلمة ضنين", a: "بخيل" },
-    { q: "الجزء الذي يعالج البيانات في الحاسوب", a: "المعالج" }
+    { q: "الجزء الذي يعالج البيانات في الحاسوب", a: "معالج" }
   ],
   [
     { q: "الشركة المالكة لمنصة لينكد إن", a: "مايكروسوفت" },
     { q: "أول حارس مرمى فاز بالكرة الذهبية", a: "ياشين" },
     { q: "أكبر محيط في العالم", a: "الهادئ" },
-    { q: "أغلى أنواع التوابل", a: "الزعفران" },
+    { q: "أغلى أنواع التوابل", a: "زعفران" },
     { q: "ضد كلمة موارب", a: "صريح" },
     { q: "السورة التي تسمى سورة القتال", a: "محمد" }
   ],
@@ -170,8 +170,8 @@ const stages = [
   [
     { q: "أول رئيس للولايات المتحدة", a: "واشنطن" },
     { q: "مرادف كلمة دؤوب", a: "مجتهد" },
-    { q: "الجهاز المستخدم لتحديد الاتجاهات", a: "البوصلة" },
-    { q: "العنصر الكيميائي الذي رمزه Ag", a: "الفضة" },
+    { q: "الجهاز المستخدم لتحديد الاتجاهات", a: "بوصلة" },
+    { q: "العنصر الكيميائي الذي رمزه Ag", a: "فضة" },
     { q: "الليلة التي أنزل فيها القرآن", a: "القدر" },
     { q: "الشيء الذي يرمز للسلام", a: "الحمامة" }
   ],
@@ -184,12 +184,12 @@ const stages = [
     { q: "العدد الذي نصفه يساوي ثلثه", a: "صفر" }
   ],
   [
-    { q: "الصبغة الخضراء في النبات", a: "الكلوروفيل" },
+    { q: "الصبغة الخضراء في النبات", a: "كلوروفيل" },
     { q: "القائد الذي عبر جبال الألب بالفيلة", a: "حنبعل" },
     { q: "عاصمة الأندلس قديما", a: "قرطبة" },
     { q: "أكثر ناد تحقيقا للبطولات الأوروبية", a: "ريال مدريد" },
     { q: "عاصمة تركيا", a: "أنقرة" },
-    { q: "العنصر الأساسي في تكوين الألماس", a: "الكربون" }
+    { q: "العنصر الأساسي في تكوين الألماس", a: "كربون" }
   ],
   [
     { q: "الجبل الذي يقف فيه الحجاج يوم عرفة", a: "عرفات" },
@@ -202,7 +202,7 @@ const stages = [
   [
     { q: "أعمق نقطة معروفة في المحيطات", a: "تشالنجر ديب" },
     { q: "عاصمة المغرب", a: "الرباط" },
-    { q: "الوحدة المستخدمة لقياس سعة تخزين البيانات", a: "البايت" },
+    { q: "الوحدة المستخدمة لقياس سعة تخزين البيانات", a: "بايت" },
     { q: "الإمبراطورية التي كانت عاصمتها القسطنطينية", a: "البيزنطية" },
     { q: "النادي الملقب بالبلوغرانا", a: "برشلونة" },
     { q: "الفائز المصري بجائزة نوبل في الأدب", a: "نجيب محفوظ" }
@@ -210,8 +210,8 @@ const stages = [
   [
     { q: "العندليب الأسمر", a: "عبد الحليم" },
     { q: "أول مسجد بني في الإسلام", a: "قباء" },
-    { q: "أكبر صحراء حارة في العالم", a: " الكبرى" },
-    { q: "الجهاز المستخدم لتكبير الأجسام الدقيقة", a: "المجهر" },
+    { q: "أكبر صحراء حارة في العالم", a: "الكبرى" },
+    { q: "الجهاز المستخدم لتكبير الأجسام الدقيقة", a: "مجهر" },
     { q: "صاحب رواية الخيميائي", a: "باولو كويلو" },
     { q: "القائد الذي فتح مصر", a: "عمرو بن العاص" }
   ],
@@ -227,14 +227,14 @@ const stages = [
     { q: "رسام لوحة ليلة النجوم", a: "فان غوخ" },
     { q: "المضيق الذي يفصل المغرب عن إسبانيا", a: "جبل طارق" },
     { q: "الذاكرة المؤقتة في الحاسوب", a: "رام" },
-    { q: "الطبقة التي تحمينا من الأشعة فوق البنفسجية", a: "الأوزون" },
+    { q: "الطبقة التي تحمينا من الأشعة فوق البنفسجية", a: "أوزون" },
     { q: "ما الذي يقع بين السماء والأرض", a: "الواو" },
     { q: "السورة التي تسمى عروس القرآن", a: "الرحمن" }
   ],
   [
     { q: "أعلى جبل في أفريقيا", a: "كليمنجارو" },
     { q: "اللاعب الذي سجل هدف فوز إسبانيا بكأس العالم 2010", a: "إنييستا" },
-    { q: "أصلب مادة طبيعية", a: "الألماس" },
+    { q: "أصلب مادة طبيعية", a: "ألماس" },
     { q: "القائد المغولي الذي اجتاح بغداد", a: "هولاكو" },
     { q: "العلم الذي يدرس الزلازل", a: "السيزمولوجيا" },
     { q: "النبي الذي أرسل إلى أهل مدين", a: "شعيب" }
@@ -259,10 +259,15 @@ stages.forEach((stage, i) => {
 let recoveryMode = /type=recovery/.test(location.hash);
 let justConfirmed = /type=signup/.test(location.hash);
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GVvXRyVhLDUKYoc7sNg2aw_z41UKfvL";
-const db = window.supabase.createClient(
-  "https://nwsvtrttlcrcepeohwfn.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY
-);
+let db = null;
+try {
+  db = window.supabase.createClient(
+    "https://nwsvtrttlcrcepeohwfn.supabase.co",
+    SUPABASE_PUBLISHABLE_KEY
+  );
+} catch (err) {
+  console.error("Supabase failed to load", err);
+}
 
 let currentUser = null;
 let bestScore = 0;
@@ -293,7 +298,6 @@ function openNameModal() {
   $("nameInput").value = "";
   $("emailInput").value = "";
   $("passwordInput").value = "";
-  $("showPassBtn").hidden = forgot;
   updateAuthUI();
 }
 
@@ -327,6 +331,7 @@ function updateAuthUI() {
   $("passwordInput").autocomplete = login ? "current-password" : "new-password";
 
   $("forgotBtn").hidden = !login;
+  $("showPassBtn").hidden = forgot;
 
   $("startBtn").textContent = signup ? "إنشاء حساب"
     : login ? "تسجيل الدخول"
@@ -564,6 +569,21 @@ function displayNumber(n) {
 // بنقسم كل إجابة لمقاطع؛ الأغلب حرفين، والأقل حرف أو تلاتة، عشان اللوحة تبقى أخف وأوضح.
 function splitWordIntoChunks(word) {
   const clean = normalizeArabic(word);
+  // كلمة من ٤ حروف تبدأ بـ"ال": نقسمها ١+٣ أو ٣+١ عشان "ال" ما تظهرش لوحدها.
+  if (clean.length === 4 && clean.startsWith("ال")) {
+    return Math.random() < .5
+      ? [clean.slice(0, 1), clean.slice(1)]
+      : [clean.slice(0, 3), clean.slice(3)];
+  }
+  // نعيد التقسيم لحد ما أول مقطع ما يبقاش "ال" لوحده.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const result = splitOnce(clean);
+    if (!(clean.startsWith("ال") && result[0] === "ال")) return result;
+  }
+  return splitOnce(clean);
+}
+
+function splitOnce(clean) {
   const chunks = [];
     // كلمة من ٣ حروف بس: بنقسمها لمقطعين عشان ما تظهرش جاهزة على اللوحة.
   if (clean.length === 3) {
@@ -676,16 +696,14 @@ function renderQuestions() {
   stages[stageIndex].forEach((item, index) => {
     const card = document.createElement("div");
     card.className = "question-card" + (solved.has(index) ? " solved" : "");
-    const number = document.createElement("span");
-    number.className = "number";
-    number.textContent = displayNumber(index + 1);
+
     const question = document.createElement("span");
     question.className = "q-preview";
     question.textContent = item.q;
     const answer = document.createElement("div");
     answer.className = "card-answer" + (solved.has(index) ? " revealed" : "");
     answer.textContent = solved.has(index) ? item.a : getDots(item.a, hinted[index] || 0);
-    card.append(number, question, answer);
+    card.append(question, answer);
     if (hintMode && !solved.has(index)) {
       card.classList.add("hintable");
       card.addEventListener("click", () => useHint(index));
@@ -699,7 +717,18 @@ function renderQuestions() {
     grid.appendChild(card);
   });
 }
-
+// بنصغّر خط النقط لحد ما تدخل في سطر واحد جوه البطاقة.
+function fitDots() {
+  document.querySelectorAll(".card-answer:not(.revealed)").forEach(el => {
+    let size = 15;
+    el.style.fontSize = size + "px";
+    el.style.display = "block";
+    while (el.scrollWidth > el.clientWidth && size > 6) {
+      size -= 0.5;
+      el.style.fontSize = size + "px";
+    }
+  });
+}
 // بنعرض الحروف اللي اللاعب اختارها مؤقتًا، عشان يقدر يتابع تكوين الإجابة.
 // بنعرض المقاطع اللي اللاعب اختارها، وأي مقطع بيرجع للوحة لما اللاعب يدوس عليه.
 function renderPicked() {
@@ -735,8 +764,16 @@ function renderTiles() {
     button.type = "button";
     button.className = "letter-tile";
     button.textContent = tile.value;
-    button.disabled = picked.includes(tile.id);
-    button.addEventListener("click", () => chooseTile(tile.id));
+    if (tile.used) {
+      // مكان فاضي بنفس الحجم عشان باقي البلاطات ما تتحركش.
+      button.classList.add("gone");
+      button.disabled = true;
+      button.tabIndex = -1;
+      button.setAttribute("aria-hidden", "true");
+    } else {
+      button.disabled = picked.includes(tile.id);
+      button.addEventListener("click", () => chooseTile(tile.id));
+    }
     container.appendChild(button);
   });
 }
@@ -762,7 +799,7 @@ function shakeAnswer() {
 function chooseTile(tileId) {
   if (picked.includes(tileId)) return;
   const tile = tileSet.find(item => item.id === tileId);
-  if (!tile) return;
+  if (!tile || tile.used) return;
   // لو المقطع ده هيعدّي الحد الأقصى، بنمنعه ونقول للاعب السبب.
   if (getPickedLetterCount() + tile.value.length > getMaxLetters()) {
     $("feedback").textContent = "وصلت للحد الأقصى من الحروف، شيل مقطع الأول";
@@ -801,15 +838,23 @@ function checkAnswer() {
   $("feedback").textContent = "إجابة صحيحة! أحسنت ✓";
   $("feedback").className = "feedback good";
   playTone(880, .15);
-  // لو كل المقاطع اللي اتختارت تبع نفس السؤال، بنشيلها بس وباقي البلاطات تفضل مكانها.
-  // لو اللاعب خلط مقاطع من أسئلة تانية، بنعيد بناء اللوحة عشان كل سؤال يفضل ممكن يتحل.
-  const allFromSameQuestion = picked.every(id => tileSet.find(t => t.id === id)?.question === questionIndex);
-  if (allFromSameQuestion) {
-    tileSet = tileSet.filter(t => t.question !== questionIndex);
-    picked = [];
-  } else {
-    prepareTiles();
-  }
+
+  // نعلّم المقاطع اللي اتستخدمت فعلًا في الإجابة الصحيحة.
+  const usedIds = new Set(picked);
+  tileSet.forEach(t => {
+    if (usedIds.has(t.id)) t.used = true;
+  });
+  picked = [];
+
+    // شبكة أمان: كل سؤال لسه متحلّش لازم تفضل مقاطعه كاملة.
+  const broken = stages[stageIndex].some((item, qi) => {
+    if (solved.has(qi)) return false;
+    const have = tileSet
+      .filter(t => t.question === qi && !t.used)
+      .reduce((s, t) => s + t.value.length, 0);
+    return have !== normalizeArabic(item.a).length;
+  });
+  if (broken) prepareTiles();
   renderAll();
   document.querySelectorAll(".question-card")[questionIndex]?.classList.add("just-solved");
     const solvedCard = document.querySelectorAll(".question-card")[questionIndex];
@@ -826,9 +871,19 @@ function checkAnswer() {
 
 // بنحدّث شريط التقدم وعدد الأسئلة اللي اتحلت في المرحلة الحالية.
 function updateProgress() {
-  $("levelLabel").textContent = `المرحلة ${displayNumber(stageIndex + 1)} من ${displayNumber(TOTAL_STAGES)}`;
-  $("progressLabel").textContent = `${displayNumber(solved.size)} من ${displayNumber(QUESTIONS_PER_STAGE)} إجابات`;
+  $("stageNum").textContent = displayNumber(stageIndex + 1);
+  $("stageTotal").textContent = displayNumber(TOTAL_STAGES);
   $("progressBar").style.width = `${solved.size / QUESTIONS_PER_STAGE * 100}%`;
+}
+// لو المرحلة اتحلت بالكامل: بنخفي الحروف وزر افحص والتلميح، وبنظهر زر التالي.
+function updateStageDoneUI() {
+  const done = solved.size === QUESTIONS_PER_STAGE;
+  const isLast = stageIndex === LAST_STAGE;
+  $("checkBtn").hidden = done;
+  $("nextInlineBtn").hidden = !done;
+  $("nextInlineBtn").textContent = isLast ? "النهاية 🏆" : "التالي ←";
+  $("letterTiles").hidden = done;
+  $("hintBtn").hidden = done;
 }
 
 // بنحدّث أجزاء الشاشة المرتبطة ببعض بعد كل إجابة.
@@ -838,8 +893,9 @@ function renderAll() {
   renderTiles();
   updateProgress();
   updateHintButton();
+  updateStageDoneUI();
+  fitDots();
 }
-
 
 // بنبدأ مرحلة جديدة بلوحة حروف جديدة وأسئلة غير محلولة، ونحفظ التقدم.
 function nextStage() {
@@ -865,7 +921,7 @@ function showStageComplete() {
   $("modalText").textContent = "أحسنت! ستة أسئلة أُجيبت بنجاح. مستعد للتحدي التالي؟";
   $("nextStageBtn").textContent = "المرحلة التالية ←";
   $("stageModal").classList.remove("hidden");
-    launchConfetti(.25, .35, 60);
+  launchConfetti(.25, .35, 60);
   launchConfetti(.75, .35, 60);
   playTone(660, .12);
   setTimeout(() => playTone(880, .16), 130);
@@ -1088,7 +1144,28 @@ $("forgotBtn").addEventListener("click", () => {
   $("nameError").classList.remove("success");
   updateAuthUI();
 });
-
+function authErrorMessage(error) {
+  const msg = (error && error.message) || "";
+  if (/database error saving new user/i.test(msg))
+    return "الاسم ده غالبًا مستخدم قبل كده، اختار اسم تاني.";
+  if (/invalid login credentials/i.test(msg))
+    return "الإيميل أو كلمة السر غلط.";
+  if (/user already registered|already been registered/i.test(msg))
+    return "الإيميل ده مسجل قبل كده، سجّل دخول.";
+  if (/email not confirmed/i.test(msg))
+    return "لازم تأكد بريدك الإلكتروني الأول، شوف رسالة التأكيد.";
+  if (/rate limit|too many requests|security purposes/i.test(msg))
+    return "محاولات كتير، استنى شوية وجرّب تاني.";
+  if (/password should be at least|weak password/i.test(msg))
+    return "كلمة السر ضعيفة، لازم ٦ أحرف على الأقل.";
+  if (/invalid email|unable to validate email/i.test(msg))
+    return "صيغة الإيميل غير صحيحة.";
+  if (/failed to fetch|network/i.test(msg))
+    return "مشكلة في الاتصال، تحقق من الإنترنت.";
+  if (/same password|different from the old/i.test(msg))
+    return "كلمة السر الجديدة لازم تختلف عن القديمة.";
+  return msg || "حصل خطأ أثناء التسجيل.";
+}
 $("authForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -1141,6 +1218,11 @@ $("authForm").addEventListener("submit", async (event) => {
 
       if (error) throw error;
 
+      // إيميل مسجل قبل كده: Supabase بيرجّع identities فاضية
+      if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        throw new Error("already been registered");
+      }
+
       if (!data.session) {
         $("nameError").textContent =
           "تم إنشاء الحساب. افتح بريدك الإلكتروني لتأكيده، ثم سجّل الدخول.";
@@ -1160,10 +1242,7 @@ $("authForm").addEventListener("submit", async (event) => {
       await initializePlayer(data.user);
     }
   } catch (error) {
-    const message = error.message || "";
-    $("nameError").textContent = /database error saving new user/i.test(message)
-      ? "الاسم ده غالبًا مستخدم قبل كده، اختار اسم تاني."
-      : message || "حصل خطأ أثناء التسجيل.";
+    $("nameError").textContent = authErrorMessage(error);
   } finally {
     $("startBtn").disabled = false;
   }
@@ -1186,6 +1265,18 @@ $("switchPlayerBtn").addEventListener("click", async () => {
   currentUser = null;
   playerName = "";
   bestScore = 0;
+  stageIndex = 0;
+  solved = new Set();
+  picked = [];
+  tileSet = [];
+  resetHints();
+  saveQueue = Promise.resolve();
+  $("playerName").textContent = "";
+  $("feedback").textContent = "";
+  $("feedback").className = "feedback";
+  authMode = "login";
+  prepareTiles();
+  renderAll();
   openNameModal();
 });
 
@@ -1208,6 +1299,16 @@ async function initializeApp() {
   syncSoundButton();
   syncThemeButton();
   updateAuthUI();
+
+  if (!db) {
+    prepareTiles();
+    renderAll();
+    openNameModal();
+    $("nameError").textContent = "تعذر الاتصال بالخادم. تحقق من الإنترنت وأعد تحميل الصفحة.";
+    $("startBtn").disabled = true;
+    finishLoading();
+    return;
+  }
 
   try {
     const { data, error } = await db.auth.getSession();
@@ -1251,19 +1352,22 @@ async function initializeApp() {
 
 function finishLoading() {
   document.querySelector(".app-shell").classList.remove("loading");
+  fitDots();
   const loader = $("loader");
   if (loader) {
     loader.classList.add("done");
     setTimeout(() => loader.remove(), 500);
   }
 }
-db.auth.onAuthStateChange((event) => {
-  if (event === "PASSWORD_RECOVERY") {
-    recoveryMode = true;
-    authMode = "reset";
-    openNameModal();
-  }
-});
+if (db) {
+  db.auth.onAuthStateChange((event) => {
+    if (event === "PASSWORD_RECOVERY") {
+      recoveryMode = true;
+      authMode = "reset";
+      openNameModal();
+    }
+  });
+}
 // Esc بيقفل اللوحة الشرفية.
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
@@ -1294,4 +1398,20 @@ $("showPassBtn").addEventListener("click", () => {
   input.type = show ? "text" : "password";
   $("showPassBtn").textContent = show ? "إخفاء كلمة السر" : "إظهار كلمة السر";
 });
+// "شوف الإجابات": بنقفل المودال وبنسيب اللاعب على المرحلة المحلولة.
+$("reviewBtn").addEventListener("click", () => {
+  $("stageModal").classList.add("hidden");
+  $("feedback").textContent = "";
+  $("feedback").className = "feedback";
+});
+
+// زر التالي جوه لوحة اللعب.
+$("nextInlineBtn").addEventListener("click", () => {
+  if (stageIndex === LAST_STAGE) {
+    showFinish();
+  } else {
+    nextStage();
+  }
+});
+window.addEventListener("resize", fitDots);
 initializeApp();

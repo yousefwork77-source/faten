@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#071b27" />
     <title>فَطِن</title>
-        <link rel="stylesheet" href="style.css?v=6" />
+        <link rel="stylesheet" href="style.css?v=8" />
     <script>
       try {
         var t = localStorage.getItem("faten-theme");
@@ -32,6 +32,9 @@
               <span class="faten-logo">فَـطِن</span>
             </h1>
           </div>
+          <span id="stageBadge" class="stage-badge" aria-label="المرحلة">
+            <b id="stageNum">١</b><i>/</i><span id="stageTotal">٣٠</span>
+          </span>
         </div>
         <div class="top-actions">
           <span id="playerName" class="player-name"></span>
@@ -66,10 +69,6 @@
       </header>
 
       <section class="progress-panel">
-        <div class="progress-copy">
-          <span id="levelLabel">المرحلة ١ من ١٠</span>
-          <span id="progressLabel">٠ من ٦ إجابات</span>
-        </div>
         <div class="progress-track">
           <div id="progressBar" class="progress-bar"></div>
         </div>
@@ -83,6 +82,9 @@
         <div class="play-top">
           <button id="checkBtn" class="check-btn" type="button" disabled>
             افحص
+          </button>
+          <button id="nextInlineBtn" class="check-btn" type="button" hidden>
+            التالي ←
           </button>
 
           <div
@@ -145,9 +147,14 @@
         <p class="eyebrow">إنجاز رائع</p>
         <h2 id="modalTitle">أكملت المرحلة!</h2>
         <p id="modalText">أحسنت! جاهز للمرحلة التالية؟</p>
-        <button id="nextStageBtn" class="primary-btn" type="button">
-          المرحلة التالية ←
-        </button>
+        <div class="modal-actions">
+          <button id="nextStageBtn" class="primary-btn" type="button">
+            المرحلة التالية ←
+          </button>
+          <button id="reviewBtn" class="secondary-btn" type="button">
+            شوف الإجابات
+          </button>
+        </div>
       </div>
     </div>
 
@@ -261,16 +268,6 @@
     </div>
         <canvas id="confettiCanvas" aria-hidden="true"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0"></script>
-    <script src="script.js?v=6"></script>
-        <script>
-      setTimeout(function () {
-        var l = document.getElementById("loader");
-        if (l) {
-          l.classList.add("done");
-          var n = document.getElementById("nameModal");
-          if (n) n.classList.remove("hidden");
-        }
-      }, 8000);
-    </script>
+    <script src="script.js?v=8"></script>
   </body>
 </html>
