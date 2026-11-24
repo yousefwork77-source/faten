@@ -343,7 +343,21 @@ function updateAuthUI() {
     : login ? "لسه معندكش حساب؟ أنشئ حساب"
     : "رجوع لتسجيل الدخول";
 }
-
+function continueOffline(user) {
+  const local = readLocalProgress();
+  if (!local) return false;
+  playerName = (user.user_metadata && user.user_metadata.username) || "لاعب";
+  stageIndex = Math.min(local.stage, LAST_STAGE);
+  solved = new Set((local.solved || []).map(Number));
+  picked = [];
+  $("playerName").textContent = playerName;
+  $("nameModal").classList.add("hidden");
+  loadHints();
+  prepareTiles();
+  renderAll();
+  scheduleRetry();
+  return true;
+}
 async function initializePlayer(user) {
   currentUser = user;
 
@@ -354,24 +368,9 @@ async function initializePlayer(user) {
     .single();
 
 if (profileError) {
-  // مفيش نت: نكمل بالنسخة المحلية لو موجودة.
-  const local = readLocalProgress();
-  if (local) {
-    playerName = (user.user_metadata && user.user_metadata.username) || "لاعب";
-    stageIndex = Math.min(local.stage, LAST_STAGE);
-    solved = new Set((local.solved || []).map(Number));
-    picked = [];
-    $("playerName").textContent = playerName;
-    $("nameModal").classList.add("hidden");
-    loadHints();
-    prepareTiles();
-    renderAll();
-    scheduleRetry();
-    return;
-  }
+  if (continueOffline(user)) return;
   openNameModal();
-  $("nameError").textContent =
-    "تعذر تحميل بيانات اللاعب: " + profileError.message;
+  $("nameError").textContent = "تعذر تحميل بيانات اللاعب: " + profileError.message;
   return;
 }
 
@@ -384,12 +383,12 @@ if (profileError) {
     .eq("user_id", user.id)
     .maybeSingle();
 
-  if (progressError) {
-    openNameModal();
-    $("nameError").textContent =
-      "تعذر تحميل التقدم: " + progressError.message;
-    return;
-  }
+if (progressError) {
+  if (continueOffline(user)) return;
+  openNameModal();
+  $("nameError").textContent = "تعذر تحميل التقدم: " + progressError.message;
+  return;
+}
 
 const server = progress
   ? { stage: Math.min(progress.stage, LAST_STAGE), solved: (progress.solved || []).map(Number) }
@@ -967,6 +966,7 @@ function checkAnswer() {
   }
 
   solved.add(questionIndex);
+  hintMode = false;
 $("feedback").textContent = "";
 $("feedback").className = "feedback";
   playTone(880, .15);
