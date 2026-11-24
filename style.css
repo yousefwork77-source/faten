@@ -1701,3 +1701,34 @@ body {
 .app-shell {
   justify-content: space-between;
 }
+/* الرسالة بتطفو فوق من غير ما تاخد مساحة */
+.play-panel { position: relative; }
+
+.action-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  min-height: 0;
+  margin: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.feedback:empty { display: none; }
+
+.action-row .feedback {
+  padding: 4px 14px;
+  border-radius: 99px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.play-panel {
+  height: auto;
+  min-height: 250px;
+  max-height: 46dvh;
+}
+.letter-tiles {
+  overflow-y: auto;
+  padding-bottom: 30px; /* مكان لرسالة الـ overlay */
+}

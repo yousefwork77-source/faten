@@ -353,12 +353,27 @@ async function initializePlayer(user) {
     .eq("id", user.id)
     .single();
 
-  if (profileError) {
-    openNameModal();
-    $("nameError").textContent =
-      "تعذر تحميل بيانات اللاعب: " + profileError.message;
+if (profileError) {
+  // مفيش نت: نكمل بالنسخة المحلية لو موجودة.
+  const local = readLocalProgress();
+  if (local) {
+    playerName = (user.user_metadata && user.user_metadata.username) || "لاعب";
+    stageIndex = Math.min(local.stage, LAST_STAGE);
+    solved = new Set((local.solved || []).map(Number));
+    picked = [];
+    $("playerName").textContent = playerName;
+    $("nameModal").classList.add("hidden");
+    loadHints();
+    prepareTiles();
+    renderAll();
+    scheduleRetry();
     return;
   }
+  openNameModal();
+  $("nameError").textContent =
+    "تعذر تحميل بيانات اللاعب: " + profileError.message;
+  return;
+}
 
   playerName = profile.username;
   bestScore = profile.score || 0;
@@ -376,8 +391,15 @@ async function initializePlayer(user) {
     return;
   }
 
-  stageIndex = progress ? Math.min(progress.stage, LAST_STAGE) : 0;
-  solved = new Set((progress?.solved || []).map(Number));
+const server = progress
+  ? { stage: Math.min(progress.stage, LAST_STAGE), solved: (progress.solved || []).map(Number) }
+  : null;
+const local = readLocalProgress();
+const best = isAhead(local, server) ? local : server;
+
+stageIndex = best ? Math.min(best.stage, LAST_STAGE) : 0;
+solved = new Set((best?.solved || []).map(Number));
+const needsUpload = isAhead(local, server) || (local && local.pending);
   picked = [];
 
   $("playerName").textContent = playerName;
@@ -389,43 +411,123 @@ async function initializePlayer(user) {
   loadHints();
   prepareTiles();
   renderAll();
-
+if (needsUpload) queueSave(); // نرفع التقدم اللي كان معلّق
   if (solved.size === QUESTIONS_PER_STAGE) {
     setTimeout(showStageComplete, 300);
   }
 }
 let saveQueue = Promise.resolve();
+// ===== الحفظ المحلي وإعادة المحاولة =====
+function progressKey() {
+  return `faten-progress-${currentUser ? currentUser.id : "guest"}`;
+}
 
+// بنحفظ نسخة على الجهاز فورًا، ونعلّم إنها لسه ما اترفعتش للسيرفر.
+function saveLocalProgress(pending) {
+  try {
+    localStorage.setItem(progressKey(), JSON.stringify({
+      stage: stageIndex,
+      solved: [...solved],
+      pending
+    }));
+  } catch (_) {}
+}
+
+function readLocalProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(progressKey()) || "null");
+  } catch (_) {
+    return null;
+  }
+}
+
+// أي تقدم أكبر؟ المرحلة الأعلى تكسب، ولو نفس المرحلة فالأكتر حل.
+function isAhead(a, b) {
+  if (!a) return false;
+  if (!b) return true;
+  if (a.stage !== b.stage) return a.stage > b.stage;
+  return (a.solved || []).length > (b.solved || []).length;
+}
+
+let retryTimer = null;
+function scheduleRetry() {
+  clearTimeout(retryTimer);
+  retryTimer = setTimeout(queueSave, 8000);
+}
+window.addEventListener("online", () => {
+  const local = readLocalProgress();
+  if (local && local.pending) queueSave();
+});
 function queueSave() {
+  saveLocalProgress(true); // أول حاجة: على الجهاز
   saveQueue = saveQueue.then(saveProgress).catch(console.error);
   return saveQueue;
 }
+
 async function saveProgress() {
   if (!currentUser) return;
 
   const score = stageIndex * QUESTIONS_PER_STAGE + solved.size;
   bestScore = Math.max(bestScore, score);
 
-  const { error: progressError } = await db
-    .from("progress")
-    .upsert({
-      user_id: currentUser.id,
-      stage: stageIndex,
-      solved: [...solved],
-      score: bestScore,
-      updated_at: new Date().toISOString()
-    }, { onConflict: "user_id" });
+  try {
+    // نعرف السيرفر واقف عند أنهي مرحلة
+    const { data: remote, error: readError } = await db
+      .from("progress")
+      .select("stage, solved")
+      .eq("user_id", currentUser.id)
+      .maybeSingle();
+    if (readError) throw readError;
 
-  if (progressError) {
-    $("feedback").textContent = "تعذر حفظ التقدم. تحقق من اتصالك.";
+    const all = [0, 1, 2, 3, 4, 5];
+    let cur = remote ? remote.stage : 0;
+
+    // لو السيرفر ورا بأكتر من مرحلة: نكمّل المراحل اللي بينهم واحدة واحدة
+    while (cur < stageIndex) {
+      const { error } = await db.from("progress").upsert(
+        { user_id: currentUser.id, stage: cur, solved: all, score: bestScore },
+        { onConflict: "user_id" }
+      );
+      if (error) throw error;
+      cur++;
+      const next = await db.from("progress").upsert(
+        { user_id: currentUser.id, stage: cur, solved: [], score: bestScore },
+        { onConflict: "user_id" }
+      );
+      if (next.error) throw next.error;
+    }
+
+    // الحالة الحالية
+    const { error } = await db.from("progress").upsert(
+      {
+        user_id: currentUser.id,
+        stage: stageIndex,
+        solved: [...solved],
+        score: bestScore
+      },
+      { onConflict: "user_id" }
+    );
+    if (error) throw error;
+
+    saveLocalProgress(false);
+    if ($("feedback").textContent.includes("النت ضعيف")) {
+      $("feedback").textContent = "";
+      $("feedback").className = "feedback";
+    }
+  } catch (err) {
+    console.error("save failed:", err);
+
+    // رفض من القواعد (مش مشكلة نت): إعادة المحاولة مش هتفيد
+    if (err && err.code === "P0001") {
+      $("feedback").textContent = "";
+      $("feedback").className = "feedback";
+      return;
+    }
+
+    $("feedback").textContent = "النت ضعيف، تقدمك متخزن على جهازك وهيترفع تلقائي";
     $("feedback").className = "feedback bad";
-    console.error(progressError);
-    return;
+    scheduleRetry();
   }
-
-
-
-
 }
 
 
@@ -663,12 +765,42 @@ function playTone(frequency = 660, duration = .09) {
 }
 
 // بنجهز لوحة المرحلة من مقاطع إجابات الأسئلة اللي لسه متحلتش، وبعدها بنخلطها.
+// أقصى عدد بلاطات في المرحلة. لو زاد بنضم مقطعين صغيرين جنب بعض.
+const MAX_TILES = 24;
+
+function capChunks(perQuestion) {
+  let total = perQuestion.reduce((n, c) => n + c.length, 0);
+  while (total > MAX_TILES) {
+    let best = null;
+    perQuestion.forEach((chunks, q) => {
+      // منضمش لو الإجابة هتبقى بلاطة واحدة (هتكشف نفسها)
+      if (chunks.length <= 2) return;
+      for (let i = 0; i < chunks.length - 1; i++) {
+        const len = chunks[i].length + chunks[i + 1].length;
+        if (len <= 4 && (!best || len < best.len)) best = { q, i, len };
+      }
+    });
+    if (!best) break;
+    const c = perQuestion[best.q];
+    c.splice(best.i, 2, c[best.i] + c[best.i + 1]);
+    total--;
+  }
+}
+
 function prepareTiles() {
+  const perQuestion = stages[stageIndex].map((item, qi) =>
+    solved.has(qi) ? [] : splitIntoChunks(item.a)
+  );
+  capChunks(perQuestion);
+
   const allTiles = [];
-  stages[stageIndex].forEach((item, questionIndex) => {
-    if (solved.has(questionIndex)) return;
-    splitIntoChunks(item.a).forEach((value, chunkIndex) => {
-      allTiles.push({ id: `${stageIndex}-${questionIndex}-${chunkIndex}-${Math.random().toString(36).slice(2, 8)}`, value, question: questionIndex });
+  perQuestion.forEach((chunks, questionIndex) => {
+    chunks.forEach((value, chunkIndex) => {
+      allTiles.push({
+        id: `${stageIndex}-${questionIndex}-${chunkIndex}-${Math.random().toString(36).slice(2, 8)}`,
+        value,
+        question: questionIndex
+      });
     });
   });
   tileSet = shuffle(allTiles);
@@ -835,8 +967,8 @@ function checkAnswer() {
   }
 
   solved.add(questionIndex);
-  $("feedback").textContent = "إجابة صحيحة! أحسنت ✓";
-  $("feedback").className = "feedback good";
+$("feedback").textContent = "";
+$("feedback").className = "feedback";
   playTone(880, .15);
 
   // نعلّم المقاطع اللي اتستخدمت فعلًا في الإجابة الصحيحة.
@@ -1058,20 +1190,31 @@ function useHint(questionIndex) {
   hinted[questionIndex] = revealed + 1;
   hintsLeft--;
     saveHints();
-  $("feedback").textContent = "💡 اتكشف حرف";
-  $("feedback").className = "feedback good";
+$("feedback").textContent = "";
+$("feedback").className = "feedback";
   playTone(520, .1);
   renderAll();
 }
 
 $("hintBtn").addEventListener("click", () => {
   if (hintsLeft <= 0 && !hintMode) return;
+
+  // الأسئلة اللي لسه متحلتش
+  const remaining = stages[stageIndex]
+    .map((_, index) => index)
+    .filter(index => !solved.has(index));
+
+  // لو سؤال واحد بس فاضل: التلميح يروح له على طول
+  if (remaining.length === 1) {
+    useHint(remaining[0]);
+    return;
+  }
+
   hintMode = !hintMode;
   $("feedback").textContent = hintMode ? "اضغط على السؤال اللي عايز تلميح ليه" : "";
   $("feedback").className = "feedback";
   renderAll();
 });
-
 // زر "افحص" بيتحقق من الإجابة اللي اللاعب جمعها.
 $("checkBtn").addEventListener("click", checkAnswer);
 
